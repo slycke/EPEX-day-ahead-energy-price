@@ -6,7 +6,7 @@
 			"title": "Name",
 			"type": "string",
 			"required": true,
-			"default": "ComEd Rate"
+			"default": "Energy Price"
 		},
 		"manufacturer": {
 			"title": "Manufacturer",
@@ -18,7 +18,7 @@
 			"title": "Model",
 			"type": "string",
 			"required": false,
-			"default": "Energy Price"
+			"default": "Energy Price Monitor"
 		},
 		"refreshInterval": {
 			"title": "Refresh Interval",

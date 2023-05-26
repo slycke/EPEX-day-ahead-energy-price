@@ -22,7 +22,6 @@ class EnergyPrice {
     constructor(log, config) {
     	this.log = log
     	this.config = config
-
     	this.service = new Service.TemperatureSensor(this.config.name)
     	this.name = config["name"];
     	this.manufacturer = config["manufacturer"] || "Energy Price";
@@ -56,7 +55,7 @@ class EnergyPrice {
 					this.service.getCharacteristic(Characteristic.CurrentTemperature).updateValue(DEF_MAX_RATE)
 					} else {
 					// Return positive value
-					this.service.getCharacteristic(Characteristic.CurrentTemperature).updateValue(hourlyData.data[0].price-32, 1)
+					this.service.getCharacteristic(Characteristic.CurrentTemperature).updateValue(Math.ceil((hourlyData.data[0].price-32)*5/9), 1)
 				}
 			} else {
 				// No response hourlyData, return maximum allowed value
