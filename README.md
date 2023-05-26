@@ -1,5 +1,9 @@
 # homebridge-energy-price
 
+
+This is a fork of ecoen66/homebridge-comed-hourlybilling. It is modified to run as a temperature sensor so that negative values are allowed. I created this project to automate EV charging when prices are negative, but it can be used as a monitor or for other automations as well.
+
+
 # Installation
 Run these commands:
 
