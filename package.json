@@ -1,6 +1,6 @@
 {
 	"name": "homebridge-energy-price",
-	"version": "1.1.6",
+	"version": "1.1.7",
 	"description": "Monitors the ComEd energy price for use in automations",
 	"author": "john2691",
 	"license": "MIT",

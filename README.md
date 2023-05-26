@@ -26,10 +26,10 @@ Example accessory config (needs to be added to the homebridge config.json):
 
 		"accessories": [
         	{
-				"name": "ComEd Rate",
+				"name": "Energy Price",
 				"manufacturer": "ComEd",
-				"model": "Hourly Billing"
-				"accessory": "ComEd Hourly Billing"
+				"model": "Energy Price Monitor"
+				"accessory": "Energy Price"
         	}
       	]
  ...
@@ -38,8 +38,8 @@ Example accessory config (needs to be added to the homebridge config.json):
 
 Field           			| Description
 ----------------------------|------------
-**accessory**         | (required) Must always be "ComEd Hourly Billing".
+**accessory**         | (required) Must always be "Energy Price".
 **name**              | (required) The name you want to use for for the power level widget.
 **manufacturer**			| (optional) This shows up in the homekit accessory Characteristics.
 **model**             | (optional) This shows up in the homekit accessory Characteristics.
-**refreshInterval**   | (optional) The refresh interval in minutes for polling ComEd.
+**refreshInterval**   | (optional) The refresh interval in minutes for polling ComEd. The default is 5 minutes.
