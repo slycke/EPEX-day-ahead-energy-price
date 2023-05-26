@@ -1,15 +1,10 @@
-# homebridge-comed-hourlybilling
-A [ComEd](https://www.comed.com/Pages/default.aspx) Hourly Billing plugin for
-[Homebridge](https://github.com/nfarina/homebridge).  This creates a Light Sensor in homekit,
- where the LUX reading is actually the current hour average price.
-
-This code is heavily based on the work of Stog's [homebridge-fronius-inverter](https://github.com/Stog/homebridge-fronius-inverter) accessory.
+# homebridge-energy-price
 
 # Installation
 Run these commands:
 
     % sudo npm install -g homebridge
-    % sudo npm install -g homebridge-comed-hourlybilling
+    % sudo npm install -g homebridge-energy-price
 
 
 NB: If you install homebridge like this:
@@ -18,7 +13,7 @@ NB: If you install homebridge like this:
 
 Then all subsequent installations must be like this:
 
-    sudo npm install -g --unsafe-perm homebridge-comed-hourlybilling
+    sudo npm install -g --unsafe-perm homebridge-energy-price
 
 # Configuration
 
