@@ -26,8 +26,8 @@ class EnergyPrice {
     	this.service = new Service.TemperatureSensor(this.config.name)
 
     	this.name = config["name"];
-    	this.manufacturer = config["manufacturer"] || "ComEd";
-	    this.model = config["model"] || "Hourly Billing";
+    	this.manufacturer = config["manufacturer"] || "Energy Price";
+	    this.model = config["model"] || "Monitor";
 	    this.minRate = config["min_rate"] || DEF_MIN_RATE;
     	this.maxRate = config["max_rate"] || DEF_MAX_RATE;
 			this.refreshInterval = config["refreshInterval"] === undefined ? (interval * 60000) : (config["refreshInterval"] * 60000)
