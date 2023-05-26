@@ -60,8 +60,8 @@ class EnergyPrice {
 					this.service.getCharacteristic(Characteristic.CurrentTemperature).updateValue(hourlyData.data[0].price, 1)
 				}
 			} else {
-				// No response hourlyData, return minimum allowed value
-				this.service.getCharacteristic(Characteristic.CurrentTemperature).updateValue(DEF_MIN_RATE)
+				// No response hourlyData, return maximum allowed value
+				this.service.getCharacteristic(Characteristic.CurrentTemperature).updateValue(DEF_MAX_RATE)
 			}
 		} catch (error) {
 				console.error(error)
