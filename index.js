@@ -14,7 +14,7 @@ const ACCESSORY_NAME = 'Energy Price';
 module.exports = function(homebridge) {
     Service = homebridge.hap.Service;
     Characteristic = homebridge.hap.Characteristic;
-    homebridge.registerAccessory(PLUGIN_NAME, ACCESSORY_NAME, Energy Price);
+    homebridge.registerAccessory(PLUGIN_NAME, ACCESSORY_NAME, EnergyPrice);
 }
 
 class EnergyPrice {

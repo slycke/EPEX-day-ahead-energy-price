@@ -1,6 +1,6 @@
 # Changelog
 
-## 1.2.0(2023-05-26)
+## 1.2.1
 
 #### Temperature now displays in F.
 #### Code Cleanup.
