@@ -24,7 +24,7 @@ class EnergyPrice {
     	this.config = config
 
     	this.service = new Service.TemperatureSensor(this.config.name)
-
+        this.dispF = Characteristic.TemperatureDisplayUnits.FAHRENHEIT
     	this.name = config["name"];
     	this.manufacturer = config["manufacturer"] || "Energy Price";
 	    this.model = config["model"] || "Monitor";
@@ -39,6 +39,7 @@ class EnergyPrice {
     	const informationService = new Service.AccessoryInformation()
         .setCharacteristic(Characteristic.Manufacturer, this.manufacturer)
         .setCharacteristic(Characteristic.Model, this.model)
+        .setCharacteristic(Characteristic.TemperatureDisplayUnits, this.dispF)
 	    return [informationService, this.service]
     }
 
