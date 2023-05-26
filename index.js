@@ -1,7 +1,6 @@
 const axios = require('axios');
 const api = axios.create({})
 
-
 var Service, Characteristic;
 
 const DEF_MIN_RATE = -10000,
@@ -15,7 +14,7 @@ const ACCESSORY_NAME = 'Energy Price';
 module.exports = function(homebridge) {
     Service = homebridge.hap.Service;
     Characteristic = homebridge.hap.Characteristic;
-    homebridge.registerAccessory(PLUGIN_NAME, ACCESSORY_NAME, EnergyPrice);
+    homebridge.registerAccessory(PLUGIN_NAME, ACCESSORY_NAME, Energy Price);
 }
 
 class EnergyPrice {
@@ -28,42 +27,40 @@ class EnergyPrice {
 	    this.model = config["model"] || "Monitor";
 	    this.minRate = config["min_rate"] || DEF_MIN_RATE;
     	this.maxRate = config["max_rate"] || DEF_MAX_RATE;
-			this.refreshInterval = config["refreshInterval"] === undefined ? (interval * 60000) : (config["refreshInterval"] * 60000)
-			this.timer = setTimeout(this.poll.bind(this), this.refreshInterval)
-			this.poll()
+	this.refreshInterval = config["refreshInterval"] === undefined ? (interval * 60000) : (config["refreshInterval"] * 60000)
+	this.timer = setTimeout(this.poll.bind(this), this.refreshInterval)
+	this.poll()
     }
 
     getServices () {
     	const informationService = new Service.AccessoryInformation()
-        .setCharacteristic(Characteristic.Manufacturer, this.manufacturer)
-        .setCharacteristic(Characteristic.Model, this.model)
+            .setCharacteristic(Characteristic.Manufacturer, this.manufacturer)
+            .setCharacteristic(Characteristic.Model, this.model)
 	    return [informationService, this.service]
     }
 
-	async poll() {
+    async poll() {
 		if(this.timer) clearTimeout(this.timer)
 		this.timer = null
 		try {
-	    const hourlyData = await api.get('https://hourlypricing.comed.com/api?type=currenthouraverage')
-				.catch(err => {
-						this.log.error('Error getting current billing rate %s',err)
-				})
-			if(hourlyData) {
-				this.log.info('Data from API', hourlyData.data[0].price);
-				if (hourlyData.data[0].price == null) {
-					// No price in hourlyData, return maximum allowed value
-					this.service.getCharacteristic(Characteristic.CurrentTemperature).updateValue(DEF_MAX_RATE)
-					} else {
-					// Return positive value
-					this.service.getCharacteristic(Characteristic.CurrentTemperature).updateValue(Math.ceil((hourlyData.data[0].price-32)*5/9), 1)
-				}
-			} else {
-				// No response hourlyData, return maximum allowed value
-				this.service.getCharacteristic(Characteristic.CurrentTemperature).updateValue(DEF_MAX_RATE)
-			}
+		    const hourlyData = await api.get('https://hourlypricing.comed.com/api?type=currenthouraverage')
+		    this.log.info('Data from API', hourlyData.data[0].price);
+		    if (hourlyData.data[0].price == null) {
+		        // No price in hourlyData, return maximum allowed value
+		        this.service.getCharacteristic(Characteristic.CurrentTemperature).updateValue(DEF_MAX_RATE)
+		    } else {
+		        // Return positive value
+		        this.service.getCharacteristic(Characteristic.CurrentTemperature).updateValue(this.convertToFahrenheit(hourlyData.data[0].price), 1)
+		    }
 		} catch (error) {
-				console.error(error)
+		    this.log.error('Error getting current billing rate %s', error)
+		    // No response hourlyData, return maximum allowed value
+		    this.service.getCharacteristic(Characteristic.CurrentTemperature).updateValue(DEF_MAX_RATE)
 		}
 		this.timer = setTimeout(this.poll.bind(this), this.refreshInterval)
-	}
+    }
+
+    convertToFahrenheit(value) {
+        return Math.ceil((value-32)*5/9);
+    }
 }
