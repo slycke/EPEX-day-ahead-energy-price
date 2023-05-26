@@ -38,7 +38,6 @@ class EnergyPrice {
     	const informationService = new Service.AccessoryInformation()
         .setCharacteristic(Characteristic.Manufacturer, this.manufacturer)
         .setCharacteristic(Characteristic.Model, this.model)
-        .setCharacteristic(Characteristic.TemperatureDisplayUnits.CELSIUS)
 	    return [informationService, this.service]
     }
 
@@ -57,7 +56,7 @@ class EnergyPrice {
 					this.service.getCharacteristic(Characteristic.CurrentTemperature).updateValue(DEF_MAX_RATE)
 					} else {
 					// Return positive value
-					this.service.getCharacteristic(Characteristic.CurrentTemperature).updateValue(hourlyData.data[0].price, 1)
+					this.service.getCharacteristic(Characteristic.CurrentTemperature).updateValue(hourlyData.data[0].price-32, 1)
 				}
 			} else {
 				// No response hourlyData, return maximum allowed value
