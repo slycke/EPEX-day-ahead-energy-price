@@ -61,6 +61,6 @@ class EnergyPrice {
     }
 
     convertToFahrenheit(value) {
-        return Math.ceil((value-32)*5/9);
+        return (value-32)*5/9;
     }
 }
