@@ -1,5 +1,5 @@
 {
-	"pluginAlias": "ComEd Hourly Billing",
+	"pluginAlias": "Energy Price",
 	"pluginType": "accessory",
 	"schema": {
 		"name": {
@@ -18,13 +18,13 @@
 			"title": "Model",
 			"type": "string",
 			"required": false,
-			"default": "Hourly Billing"
+			"default": "Energy Price"
 		},
 		"refreshInterval": {
 			"title": "Refresh Interval",
 			"type": "integer",
 			"required": false,
-			"description": "Specifies the number of minutes between ComEd polls and updates. Default is 15."
+			"description": "Specifies the number of minutes between ComEd polls and updates. Default is 5."
 
 		}
 	}

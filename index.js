@@ -4,32 +4,32 @@ const api = axios.create({})
 
 var Service, Characteristic;
 
-const DEF_MIN_LUX = 0.0001,
-      DEF_MAX_LUX = 10000;
+const DEF_MIN_RATE = -10000,
+      DEF_MAX_RATE = 10000;
 
-const interval = 15 // Minutes
+const interval = 5 // Minutes
 
-const PLUGIN_NAME   = 'homebridge-comed-hourlybilling';
-const ACCESSORY_NAME = 'ComEd Hourly Billing';
+const PLUGIN_NAME   = 'homebridge-energy-price';
+const ACCESSORY_NAME = 'Energy Price';
 
 module.exports = function(homebridge) {
     Service = homebridge.hap.Service;
     Characteristic = homebridge.hap.Characteristic;
-    homebridge.registerAccessory(PLUGIN_NAME, ACCESSORY_NAME, HourlyBilling);
+    homebridge.registerAccessory(PLUGIN_NAME, ACCESSORY_NAME, EnergyPrice);
 }
 
-class HourlyBilling {
+class EnergyPrice {
     constructor(log, config) {
     	this.log = log
     	this.config = config
 
-    	this.service = new Service.LightSensor(this.config.name)
+    	this.service = new Service.TemperatureSensor(this.config.name)
 
     	this.name = config["name"];
     	this.manufacturer = config["manufacturer"] || "ComEd";
 	    this.model = config["model"] || "Hourly Billing";
-	    this.minLux = config["min_lux"] || DEF_MIN_LUX;
-    	this.maxLux = config["max_lux"] || DEF_MAX_LUX;
+	    this.minRate = config["min_rate"] || DEF_MIN_RATE;
+    	this.maxRate = config["max_rate"] || DEF_MAX_RATE;
 			this.refreshInterval = config["refreshInterval"] === undefined ? (interval * 60000) : (config["refreshInterval"] * 60000)
 			this.timer = setTimeout(this.poll.bind(this), this.refreshInterval)
 			this.poll()
@@ -53,15 +53,15 @@ class HourlyBilling {
 			if(hourlyData) {
 				this.log.info('Data from API', hourlyData.data[0].price);
 				if (hourlyData.data[0].price == null) {
-					// No price in hourlyData, return minimum allowed value
-					this.service.getCharacteristic(Characteristic.CurrentAmbientLightLevel).updateValue(DEF_MIN_LUX)
+					// No price in hourlyData, return maximum allowed value
+					this.service.getCharacteristic(Characteristic.CurrentTemperature).updateValue(DEF_MAX_RATE)
 					} else {
 					// Return positive value
-					this.service.getCharacteristic(Characteristic.CurrentAmbientLightLevel).updateValue( Math.abs(hourlyData.data[0].price, 1))
+					this.service.getCharacteristic(Characteristic.CurrentTemperature).updateValue(hourlyData.data[0].price, 1)
 				}
 			} else {
 				// No response hourlyData, return minimum allowed value
-				this.service.getCharacteristic(Characteristic.CurrentAmbientLightLevel).updateValue(DEF_MIN_LUX)
+				this.service.getCharacteristic(Characteristic.CurrentTemperature).updateValue(DEF_MIN_RATE)
 			}
 		} catch (error) {
 				console.error(error)
