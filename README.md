@@ -1,45 +1,49 @@
-# homebridge-energy-price
+# Homebridge-Energy-Price
 
+Homebridge-Energy-Price is a project forked from [ecoen66/homebridge-comed-hourlybilling](https://github.com/ecoen66/homebridge-comed-hourlybilling). This version has been modified to run as a temperature sensor, allowing negative values. Initially created to automate EV charging during periods of negative energy prices, this plugin can also be employed for monitoring or other automation purposes.
 
-This is a fork of ecoen66/homebridge-comed-hourlybilling. It is modified to run as a temperature sensor so that negative values are allowed. I created this project to automate EV charging when prices are negative, but it can be used as a monitor or for other automations as well.
+## Installation
 
+You can install this plugin by running the following commands:
 
-# Installation
-Run these commands:
+```bash
+sudo npm install -g homebridge
+sudo npm install -g homebridge-energy-price
+```
 
-    % sudo npm install -g homebridge
-    % sudo npm install -g homebridge-energy-price
+**Note:** If you install homebridge using the following command:
 
+```bash
+sudo npm install -g --unsafe-perm homebridge
+```
 
-NB: If you install homebridge like this:
+All subsequent installations must follow the same format, like this:
 
-    sudo npm install -g --unsafe-perm homebridge
+```bash
+sudo npm install -g --unsafe-perm homebridge-energy-price
+```
 
-Then all subsequent installations must be like this:
+## Configuration
 
-    sudo npm install -g --unsafe-perm homebridge-energy-price
+You will need to add the following example accessory configuration to your homebridge `config.json`:
 
-# Configuration
+```json
+"accessories": [
+    {
+        "name": "Energy Price",
+        "manufacturer": "ComEd",
+        "model": "Energy Price Monitor",
+        "accessory": "Energy Price"
+    }
+]
+```
 
-Example accessory config (needs to be added to the homebridge config.json):
- ...
+### Configuration Explanation
 
-		"accessories": [
-        	{
-				"name": "Energy Price",
-				"manufacturer": "ComEd",
-				"model": "Energy Price Monitor"
-				"accessory": "Energy Price"
-        	}
-      	]
- ...
-
-### Config Explanation:
-
-Field           			| Description
-----------------------------|------------
-**accessory**         | (required) Must always be "Energy Price".
-**name**              | (required) The name you want to use for for the power level widget.
-**manufacturer**			| (optional) This shows up in the homekit accessory Characteristics.
-**model**             | (optional) This shows up in the homekit accessory Characteristics.
-**refreshInterval**   | (optional) The refresh interval in minutes for polling ComEd. The default is 5 minutes.
+Field | Description
+----- | -----------
+**accessory** | (required) Must always be "Energy Price".
+**name** | (required) The name you want to use for the power level widget.
+**manufacturer** | (optional) This shows up in the HomeKit accessory characteristics.
+**model** | (optional) This shows up in the HomeKit accessory characteristics.
+**refreshInterval** | (optional) The refresh interval in minutes for polling ComEd. The default is 5 minutes.
