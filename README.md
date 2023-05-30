@@ -4,7 +4,9 @@ Homebridge-Energy-Price is a project forked from [ecoen66/homebridge-comed-hourl
 
 ## Installation
 
-You can install this plugin by running the following commands:
+The easiest installation method is to use Homebridge-Config-UI-X and search for this plugin.
+
+If you want to install manually, you can run the following commands:
 
 ```bash
 sudo npm install -g homebridge
