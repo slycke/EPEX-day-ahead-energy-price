@@ -1,6 +1,6 @@
 # Homebridge-Energy-Price
 
-Homebridge-Energy-Price is a project forked from [ecoen66/homebridge-comed-hourlybilling](https://github.com/ecoen66/homebridge-comed-hourlybilling). This version has been modified to run as a temperature sensor, allowing negative values. Initially created to automate EV charging during periods of negative energy prices, this plugin can also be employed for monitoring or other automation purposes.
+Homebridge-Energy-Price is a project forked from [ecoen66/homebridge-comed-hourlybilling](https://github.com/ecoen66/homebridge-comed-hourlybilling). This version has been modified to run as a temperature sensor, allowing negative values. Initially created to automate EV charging during periods of negative energy prices, this plugin can also be employed for monitoring or other automation purposes. This works with the ComEd API to provide hourly average pricing data.
 
 ## Installation
 
