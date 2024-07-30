@@ -28,17 +28,21 @@ class EnergyPrice {
         this.minRate = config["min_rate"] || DEF_MIN_RATE;
         this.maxRate = config["max_rate"] || DEF_MAX_RATE;
         this.refreshInterval = config["refreshInterval"] === undefined ? (interval * 60000) : (config["refreshInterval"] * 60000);
+        
         this.service = new Service.TemperatureSensor(this.name);
+        this.service.getCharacteristic(Characteristic.CurrentTemperature)
+            .on('get', this.handleCurrentTemperatureGet.bind(this));
+        
         this.informationService = new Service.AccessoryInformation()
             .setCharacteristic(Characteristic.Manufacturer, this.manufacturer)
             .setCharacteristic(Characteristic.Model, this.model);
 
-        this.api.on('didFinishLaunching', this.poll.bind(this));
-    }
-
-    configureAccessory(accessory) {
-        accessory.addService(this.service);
-        accessory.addService(this.informationService);
+        // Event handling for Homebridge 2.0
+        if (api) {
+            api.on('didFinishLaunching', this.poll.bind(this));
+        } else {
+            setTimeout(this.poll.bind(this), 1000);
+        }
     }
 
     async poll() {
@@ -61,5 +65,14 @@ class EnergyPrice {
 
     convertToFahrenheit(value) {
         return (value - 32) * 5 / 9;
+    }
+
+    handleCurrentTemperatureGet(callback) {
+        this.log.info('Current temperature get requested');
+        callback(null, this.service.getCharacteristic(Characteristic.CurrentTemperature).value);
+    }
+
+    getServices() {
+        return [this.informationService, this.service];
     }
 }
