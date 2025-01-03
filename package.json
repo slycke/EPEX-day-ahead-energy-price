@@ -1,27 +1,27 @@
 {
-	"name": "homebridge-energy-price",
-	"version": "1.2.4-beta.1",
-	"description": "Monitors the ComEd energy price for use in automations",
-	"author": "anon1y4012",
+	"name": "EPEX-energy-price",
+	"version": "1.0.0",
+	"description": "Fetches the EPEX day ahead energy price from ENTSO-E for use in HomeKit automations.",
+	"author": "slycke",
 	"license": "MIT",
 	"main": "index.js",
 	"keywords": [
-		"homebridge-plugin",
+		"EPEX",
 		"Energy",
 		"Price",
-		"ComEd"
+		"Electricity"
 	],
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/john2691/homebridge-energy-price"
+		"url": "https://github.com/slycke/EPEX-day-ahead-energy-price"
 	},
 	"bugs": {
-		"url": "https://github.com/john2691/homebridge-energy-price/issues"
+		"url": "https://github.com/slycke/EPEX-day-ahead-energy-price/issues"
 	},
 	"dependencies": {
-		"axios": ">=0.21.1"
+		"axios": "^1.7.9",
+		"xml2js": "^0.6.2"
 	},
-	"devDependencies": {},
 	"engines": {
 		"homebridge": "^2.0.0-beta.0",
 		"node": "^20.15.1"

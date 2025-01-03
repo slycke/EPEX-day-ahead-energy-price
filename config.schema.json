@@ -1,31 +1,72 @@
 {
-	"pluginAlias": "Energy Price",
+	"pluginAlias": "EPEX Day-Ahead Energy Price",
 	"pluginType": "accessory",
 	"schema": {
 		"name": {
 			"title": "Name",
 			"type": "string",
 			"required": true,
-			"default": "Energy Price"
+			"default": "EPEX Day-Ahead Energy Price"
 		},
 		"manufacturer": {
 			"title": "Manufacturer",
 			"type": "string",
 			"required": false,
-			"default": "ComEd"
+			"default": "ENTSO-E EPEX Day-Ahead Price"
 		},
 		"model": {
 			"title": "Model",
 			"type": "string",
 			"required": false,
-			"default": "Energy Price Monitor"
+			"default": "EPEX Day-Ahead Energy Price Monitor"
 		},
 		"refreshInterval": {
-			"title": "Refresh Interval",
+			"title": "Refresh Interval (minutes)",
 			"type": "integer",
 			"required": false,
-			"description": "Specifies the number of minutes between ComEd polls and updates. Default is 5."
-
+			"default": 15,
+			"description": "Specifies the number of minutes between polls. Minimum of 15 is recommended due to 15-minute price intervals."
+		},
+		"documentType": {
+			"title": "ENTSO-E Document Type",
+			"type": "string",
+			"required": false,
+			"default": "A44",
+			"description": "Specifies the type of data (e.g. day-ahead prices) to request from ENTSO-E."
+		},
+		"in_Domain": {
+			"title": "In-Domain (Bidding Zone)",
+			"type": "string",
+			"required": true,
+			"default": "10YNL----------L",
+			"description": "Defaults to the Netherlands = 10YNL----------L"
+		},
+		"out_Domain": {
+			"title": "Out-Domain (Bidding Zone)",
+			"type": "string",
+			"required": true,
+			"default": "10YNL----------L",
+			"description": "Defaults to the Netherlands = 10YNL----------L"
+		},
+		"apiKey": {
+			"title": "ENTSO-E API Key",
+			"type": "string",
+			"required": true,
+			"description": "Your ENTSO-E account requires an API key, specify it here."
+		},
+		"min_rate": {
+			"title": "Minimum Rate",
+			"type": "integer",
+			"required": false,
+			"default": -10000,
+			"description": "Used as a fallback if price data cannot be fetched."
+		},
+		"max_rate": {
+			"title": "Maximum Rate",
+			"type": "integer",
+			"required": false,
+			"default": 10000,
+			"description": "Used as a fallback if price data cannot be fetched."
 		}
 	}
 }
