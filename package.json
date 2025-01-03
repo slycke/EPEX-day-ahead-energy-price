@@ -1,7 +1,8 @@
 {
-	"name": "EPEX-energy-price",
+	"displayName": "EPEX Day Ahead Energy Price Monitor",
+	"name": "homebridge-epex-energy-price",
 	"version": "1.0.0",
-	"description": "Fetches the EPEX day ahead energy price from ENTSO-E for use in HomeKit automations.",
+	"description": "Fetches the EPEX day ahead energy price hourly from ENTSO-E for use in HomeKit automations.",
 	"author": "slycke",
 	"license": "MIT",
 	"main": "index.js",
@@ -13,10 +14,10 @@
 	],
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/slycke/EPEX-day-ahead-energy-price"
+		"url": "https://github.com/slycke/homebridge-EPEX-day-ahead-energy-price"
 	},
 	"bugs": {
-		"url": "https://github.com/slycke/EPEX-day-ahead-energy-price/issues"
+		"url": "https://github.com/slycke/homebridge-EPEX-day-ahead-energy-price/issues"
 	},
 	"dependencies": {
 		"axios": "^1.7.9",
